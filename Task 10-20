@@ -1,0 +1,123 @@
+public class Main {
+    public static void main(String[] args) {
+        repeat("Name", 5);
+        differenceMaxMin(new int[]{10, 4, 1, 4, -10, -50, 32, 21});
+        System.out.println(isAvgWhole(new int[]{1, 5, 6}));
+        cumulativeSumnew(new int[]{1, 2, 3});
+        System.out.println(getDecimalPlaces("430.200055"));
+        System.out.println(Fibonacci(7));
+        System.out.println(isValid("55534"));
+        System.out.println(isStrangePair("bush", "hubris"));
+        System.out.print(isPrefix("automation", "auto-")+" ");
+        System.out.println(isSuffix("arachnophobia", "-phobia"));
+        System.out.println(boxSeq(13));
+    }
+
+    public static void repeat(String line, int num) {
+        for (int i = 0; i < line.length(); i++) {
+            char str = line.charAt(i);
+            for (int i1 = 0; i1 < num; i1++) {
+                System.out.print(str);
+            }
+        }
+        System.out.println("");
+    }
+
+    public static void differenceMaxMin(int[] task12) {
+        for (int i = task12.length - 1; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (task12[j] > task12[j + 1]) {
+                    int tmp = task12[j];
+                    task12[j] = task12[j + 1];
+                    task12[j + 1] = tmp;
+                }
+            }
+        }
+        System.out.println(task12[task12.length - 1] - task12[0]);
+    }
+
+    public static boolean isAvgWhole(int[] task13) {
+        int num = 0;
+        for (int i = 0; i < task13.length; i++) {
+            num = num + task13[i];
+        }
+        return (num % task13.length) == 0;
+    }
+
+    public static int[] cumulativeSumnew(int[] task14) {
+        int num = 0;
+        int arr[] = new int[task14.length];
+        for (int i = 0; i < task14.length; i++) {
+            if (i == 0) arr[i] = task14[i] + arr[i];
+            else arr[i] = task14[i] + arr[i - 1];
+        }
+        for (int ii = 0; ii < arr.length; ii++) {
+            System.out.print(arr[ii] + " ");
+        }
+        System.out.println("");
+        return arr;
+    }
+
+    public static int getDecimalPlaces(String line) {
+        String[] splitter = String.valueOf(line).split("\\.");
+        int i = splitter[1].length();
+        return i;
+    }
+
+    public static int Fibonacci(int fib) {
+        int n0 = 1;
+        int n1 = 1;
+        int n2;
+        for (int i = 3; i <= fib; i++) {
+            n2 = n0 + n1;
+            n0 = n1;
+            n1 = n2;
+        }
+        return n1;
+    }
+
+    public static boolean isValid(String line) {
+        return (line.chars().allMatch(Character::isDigit) && line.length() < 6);
+    }
+
+    public static boolean isStrangePair(String line1, String line2) {
+        char[] strToArray1 = line1.toCharArray();
+        char[] strToArray2 = line2.toCharArray();
+        return strToArray1[0]==strToArray2[strToArray2.length-1]&&strToArray2[0]==strToArray1[strToArray1.length-1];
+    }
+
+    public static boolean isPrefix(String line,String prefix){
+        char[] strToArray1 = line.toCharArray();
+        char[] strToArray2 = prefix.toCharArray();
+        int i=0;
+        while (strToArray2[i] != '-') {
+            if(strToArray2[i]==strToArray1[i]){
+                i++;
+            }
+            else break;
+        }
+        return i==strToArray2.length-1;
+    }
+
+    public static boolean isSuffix(String line,String suffix){
+        char[] strToArray1 = line.toCharArray();
+        char[] strToArray2 = suffix.toCharArray();
+        int i=strToArray1.length-1;
+        int ii=strToArray2.length-1;
+        while (strToArray2[ii] != ' ') {
+            if(strToArray2[ii]==strToArray1[i]){
+                i--;
+                ii--;
+            }
+            else break;
+        }
+        return ii==0;
+    }
+
+    public static int boxSeq(int num){
+        if (num%2==0){}
+        else num=num+2;
+        return num;
+    }
+
+}
